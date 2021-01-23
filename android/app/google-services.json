@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220874879797",
+    "project_id": "news-e2d62",
+    "storage_bucket": "news-e2d62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220874879797:android:bfe32a0e94b9e986a5527c",
+        "android_client_info": {
+          "package_name": "com.digvijaytechnologies.news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220874879797-0r02d181r6mhd61gonharqfljbobtef4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT8-KcemK_g8TxZVrn9C09Jcj0d01deR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220874879797-0r02d181r6mhd61gonharqfljbobtef4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
