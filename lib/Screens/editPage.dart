@@ -16,7 +16,8 @@ class EditPage extends StatefulWidget {
   String author;
   var docid;
   bool isImp;
-  EditPage({this.NewsTitle,this.NewsDescription,this.ImageUrl,this.timestamp,this.author,this.docid,this.isImp});
+  EditPage({this.NewsTitle, this.NewsDescription, this.ImageUrl, this.timestamp, this.author, this.docid, this.isImp});
+
   @override
   _EditPageState createState() => _EditPageState();
 }
@@ -31,6 +32,7 @@ class _EditPageState extends State<EditPage> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,17 +57,17 @@ class _EditPageState extends State<EditPage> {
                   flex: 3,
                   child: dmage == null
                       ? GestureDetector(
-                        onTap: () async {
-                          await UploadImage();
-                          setState(() {});
-                        },
-                        child: Image.network(widget.ImageUrl))
+                          onTap: () async {
+                            await UploadImage();
+                            setState(() {});
+                          },
+                          child: Image.network(widget.ImageUrl))
                       : GestureDetector(
-                      onTap: () async {
-                        await UploadImage();
-                        setState(() {});
-                      },
-                      child: Image.network(dmage))),
+                          onTap: () async {
+                            await UploadImage();
+                            setState(() {});
+                          },
+                          child: Image.network(dmage))),
               Expanded(
                 flex: 1,
                 child: Padding(
@@ -135,33 +137,30 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
               ),
-
               FlatButton(
                 onPressed: () async {
                   print(newsdesc);
                   print(dmage);
                   print(newstitle);
-                    await UploadCloud();
+                  await UploadCloud();
 
-                    Alert(
-                      context: context,
-                      type: AlertType.success,
-                      title: "News has been edited Successfully",
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "Exit",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .popUntil((route) => route.isFirst);
-                          },
-                          width: 120,
-                        )
-                      ],
-                    ).show();
-
+                  Alert(
+                    context: context,
+                    type: AlertType.success,
+                    title: "News has been edited Successfully",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "Exit",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).popUntil((route) => route.isFirst);
+                        },
+                        width: 120,
+                      )
+                    ],
+                  ).show();
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -171,10 +170,7 @@ class _EditPageState extends State<EditPage> {
                   padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
                   child: Text(
                     "Upload",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0),
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.0),
                   ),
                 ),
               ),
@@ -184,12 +180,14 @@ class _EditPageState extends State<EditPage> {
       ),
     );
   }
-  var durl ;
-  var dmage ;
+
+  var durl;
+  var dmage;
   var newstitle;
   var newsdesc;
   var aurthor;
   bool IsImp;
+
   UploadImage() async {
     final picker = ImagePicker();
     PickedFile image;
@@ -200,39 +198,29 @@ class _EditPageState extends State<EditPage> {
     int rn = Random().nextInt(10000000);
     if (image != null) {
       var snapshot;
-      await FirebaseStorage.instance
-          .ref()
-          .child('$rn.jpeg')
-          .putFile(file)
-          .then((value) => snapshot = value);
+      await FirebaseStorage.instance.ref().child('$rn.jpeg').putFile(file).then((value) => snapshot = value);
       var downloadurl = await snapshot.ref.getDownloadURL();
       durl = downloadurl;
-      if(durl!=null)
-      dmage = durl;
+      if (durl != null) dmage = durl;
     }
   }
 
   UploadCloud() async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    if(widget.isImp == true) {
+    if (widget.isImp == true) {
       await firestore.collection('impnews').doc(widget.docid).update({
         'newstitle': newstitle,
         'newsdesc': newsdesc,
         'imgurl': dmage,
         'author': aurthor,
       });
-
-    }
-    else{
+    } else {
       await firestore.collection('news').doc(widget.docid).update({
         'newstitle': newstitle,
         'newsdesc': newsdesc,
         'imgurl': dmage,
         'author': aurthor,
       });
-
     }
   }
-
 }
-
