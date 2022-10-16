@@ -42,7 +42,7 @@ class _EditPageState extends State<EditPage> {
           backgroundColor: Colors.amberAccent,
           title: Text(
             'Edit News',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: Container(
@@ -168,11 +168,11 @@ class _EditPageState extends State<EditPage> {
                     color: Colors.amberAccent,
                     borderRadius: BorderRadiusDirectional.circular(8.0),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 20),
                   child: Text(
                     "Upload",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
