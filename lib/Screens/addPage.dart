@@ -302,7 +302,6 @@ UploadVideo() async{
 UploadCloud() async {
   DateTime now = DateTime.now();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  if(IsImp == true) {
     await firestore.collection('impnews').doc().set({
       'newstitle': newstitle,
       'newsdesc': newsdesc,
@@ -311,16 +310,5 @@ UploadCloud() async {
       'timestamp': now
     });
 
-  }
-
-  else{
-    await firestore.collection('news').doc().set({
-      'newstitle': newstitle,
-      'newsdesc': newsdesc,
-      'imgurl': durl,
-      'author': aurthor,
-      'timestamp': now
-    });
-
-  }
+ 
 }
